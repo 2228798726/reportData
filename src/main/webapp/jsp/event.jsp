@@ -19,134 +19,129 @@
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/report/event" method="post" onsubmit="return check()">
-    <div class="table-responsive">
-        <div class="container">
-            <table class="table table-bordered">
+    <table class="table table-bordered">
         <thead class="text-center">
-        <tr class="row">
-            <th scope="col" rowspan="3" class="col-md-0.48">日期</th>
-            <th scope="col" colspan="6" class="col-md-2.88">出口车流量</th>
-            <th scope="col" colspan="6" class="col-md-2.88">入口车流量</th>
-            <th scope="col" colspan="6" class="col-md-2.88">服务区</th>
-            <th scope="col" colspan="3" class="col-md-1.44">出口未知车型</th>
-            <th scope="col" colspan="3" class="col-md-1.44">入口未知车型</th>
+        <tr>
+            <th scope="col" rowspan="3" id="th1">日期</th>
+            <th scope="col" colspan="6">出口车流量</th>
+            <th scope="col" colspan="6">入口车流量</th>
+            <th scope="col" colspan="6">服务区</th>
+            <th scope="col" colspan="3">出口未知车型</th>
+            <th scope="col" colspan="3">入口未知车型</th>
         </tr>
-        <tr class="row">
-            <th scope="col" colspan="2" class="col-md-0.96">当日</th>
-            <th scope="col" colspan="2" class="col-md-0.96">同比</th>
-            <th scope="col" colspan="2" class="col-md-0.96">环比</th>
+        <tr>
+            <th scope="col" colspan="2">当日</th>
+            <th scope="col" colspan="2">同比</th>
+            <th scope="col" colspan="2">环比</th>
 
-            <th scope="col" colspan="2" class="col-md-0.96">当日</th>
-            <th scope="col" colspan="2" class="col-md-0.96">同比</th>
-            <th scope="col" colspan="2" class="col-md-0.96">环比</th>
+            <th scope="col" colspan="2">当日</th>
+            <th scope="col" colspan="2">同比</th>
+            <th scope="col" colspan="2">环比</th>
 
-            <th scope="col" colspan="3" class="col-md-1.44">当日</th>
-            <th scope="col" colspan="3" class="col-md-1.44">环比</th>
+            <th scope="col" colspan="3">当日</th>
+            <th scope="col" colspan="3">环比</th>
 
-            <th scope="col"  class="col-md-0.48">当日</th>
-            <th scope="col"  class="col-md-0.48">同比</th>
-            <th scope="col"  class="col-md-0.48">环比</th>
+            <th scope="col">当日</th>
+            <th scope="col">同比</th>
+            <th scope="col">环比</th>
 
-            <th scope="col"  class="col-md-0.48">当日</th>
-            <th scope="col"  class="col-md-0.48">同比</th>
-            <th scope="col"  class="col-md-0.48">环比</th>
+            <th scope="col">当日</th>
+            <th scope="col">同比</th>
+            <th scope="col">环比</th>
         </tr>
-        <tr class="row">
-            <th scope="col"  class="col-md-0.48">客车车流量</th>
-            <th scope="col"  class="col-md-0.48">货车车流量</th>
-            <th scope="col"  class="col-md-0.48">客车车流量</th>
-            <th scope="col"  class="col-md-0.48">货车车流量</th>
-            <th scope="col"  class="col-md-0.48">客车车流量</th>
-            <th scope="col"  class="col-md-0.48">货车车流量</th>
+        <tr>
+            <th scope="col">客车车流量</th>
+            <th scope="col">货车车流量</th>
+            <th scope="col">客车车流量</th>
+            <th scope="col">货车车流量</th>
+            <th scope="col">客车车流量</th>
+            <th scope="col">货车车流量</th>
 
-            <th scope="col"  class="col-md-0.48">客车车流量</th>
-            <th scope="col"  class="col-md-0.48">货车车流量</th>
-            <th scope="col"  class="col-md-0.48">客车车流量</th>
-            <th scope="col"  class="col-md-0.48">货车车流量</th>
-            <th scope="col"  class="col-md-0.48">客车车流量</th>
-            <th scope="col"  class="col-md-0.48">货车车流量</th>
+            <th scope="col">客车车流量</th>
+            <th scope="col">货车车流量</th>
+            <th scope="col">客车车流量</th>
+            <th scope="col">货车车流量</th>
+            <th scope="col">客车车流量</th>
+            <th scope="col">货车车流量</th>
 
-            <th scope="col"  class="col-md-0.48">人流量</th>
-            <th scope="col"  class="col-md-0.48">货车车流量</th>
-            <th scope="col"  class="col-md-0.48">客车车流量</th>
-            <th scope="col"  class="col-md-0.48">人车流量</th>
-            <th scope="col"  class="col-md-0.48">客车车流量</th>
-            <th scope="col"  class="col-md-0.48">货车车流量</th>
+            <th scope="col">人流量</th>
+            <th scope="col">客车车流量</th>
+            <th scope="col">货车车流量</th>
+            <th scope="col">人流量</th>
+            <th scope="col">客车车流量</th>
+            <th scope="col">货车车流量</th>
 
-            <th scope="col"  class="col-md-0.48">车流量</th>
-            <th scope="col"  class="col-md-0.48">车流量</th>
-            <th scope="col"  class="col-md-0.48">车流量</th>
-            <th scope="col"  class="col-md-0.48">车流量</th>
-            <th scope="col"  class="col-md-0.48">车流量</th>
-            <th scope="col"  class="col-md-0.48">车流量</th>
+            <th scope="col">车流量</th>
+            <th scope="col">车流量</th>
+            <th scope="col">车流量</th>
+            <th scope="col">车流量</th>
+            <th scope="col">车流量</th>
+            <th scope="col">车流量</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr class="row">
-            <td scope="col" class="col-md-0.48"><input type="date" id="TOLLDATE" name="TOLLDATE" value="" /></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="CAR_EX" name="CAR_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="TRUCK_EX" name="TRUCK_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_CAR_EX" name="YOY_CAR_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_TRUCK_EX" name="YOY_TRUCK_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_CAR_EX" name="MOM_CAR_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_TRUCK_EX" name="MOM_TRUCK_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="CAR_EN" name="CAR_EN" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="TRUCK_EN" name="TRUCK_EN" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_CAR_EN" name="YOY_CAR_EN" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_TRUCK_EN" name="YOY_TRUCK_EN" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_CAR_EN" name="MOM_CAR_EN" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_TRUCK_EN" name="MOM_TRUCK_EN" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="PERSONFLOW" name="PERSONFLOW" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="CARFLOW" name="CARFLOW" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="TRUCKFLOW" name="TRUCKFLOW" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_PERSONFLOW" name="MOM_PERSONFLOW" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_CARFLOW" name="MOM_CARFLOW" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_TRUCKFLOW" name="MOM_TRUCKFLOW" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="UNKNOWN_EX" name="UNKNOWN_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="UNKNOWN_EN" name="UNKNOWN_EN" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_UNKNOWN_EX" name="YOY_UNKNOWN_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_UNKNOWN_EN" name="YOY_UNKNOWN_EN" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_UNKNOWN_EX" name="MOM_UNKNOWN_EX" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_UNKNOWN_EN" name="MOM_UNKNOWN_EN" value=""></td>
+        <tr>
+            <td scope="col" rowspan="2"><input type="date" id="TOLLDATE" name="TOLLDATE" value="" /></td>
+            <td scope="col"><input type="text" id="CAR_EX" name="CAR_EX" value=""></td>
+            <td scope="col"><input type="text" id="TRUCK_EX" name="TRUCK_EX" value=""></td>
+            <td scope="col"><input type="text" id="YOY_CAR_EX" name="YOY_CAR_EX" value=""></td>
+            <td scope="col"><input type="text" id="YOY_TRUCK_EX" name="YOY_TRUCK_EX" value=""></td>
+            <td scope="col"><input type="text" id="MOM_CAR_EX" name="MOM_CAR_EX" value=""></td>
+            <td scope="col"><input type="text" id="MOM_TRUCK_EX" name="MOM_TRUCK_EX" value=""></td>
+            <td scope="col"><input type="text" id="CAR_EN" name="CAR_EN" value=""></td>
+            <td scope="col"><input type="text" id="TRUCK_EN" name="TRUCK_EN" value=""></td>
+            <td scope="col"><input type="text" id="YOY_CAR_EN" name="YOY_CAR_EN" value=""></td>
+            <td scope="col"><input type="text" id="YOY_TRUCK_EN" name="YOY_TRUCK_EN" value=""></td>
+            <td scope="col"><input type="text" id="MOM_CAR_EN" name="MOM_CAR_EN" value=""></td>
+            <td scope="col"><input type="text" id="MOM_TRUCK_EN" name="MOM_TRUCK_EN" value=""></td>
+            <td scope="col"><input type="text" id="PERSONFLOW" name="PERSONFLOW" value=""></td>
+            <td scope="col"><input type="text" id="CARFLOW" name="CARFLOW" value=""></td>
+            <td scope="col"><input type="text" id="TRUCKFLOW" name="TRUCKFLOW" value=""></td>
+            <td scope="col"><input type="text" id="MOM_PERSONFLOW" name="MOM_PERSONFLOW" value=""></td>
+            <td scope="col"><input type="text" id="MOM_CARFLOW" name="MOM_CARFLOW" value=""></td>
+            <td scope="col"><input type="text" id="MOM_TRUCKFLOW" name="MOM_TRUCKFLOW" value=""></td>
+            <td scope="col"><input type="text" id="UNKNOWN_EX" name="UNKNOWN_EX" value=""></td>
+            <td scope="col"><input type="text" id="UNKNOWN_EN" name="UNKNOWN_EN" value=""></td>
+            <td scope="col"><input type="text" id="YOY_UNKNOWN_EX" name="YOY_UNKNOWN_EX" value=""></td>
+            <td scope="col"><input type="text" id="YOY_UNKNOWN_EN" name="YOY_UNKNOWN_EN" value=""></td>
+            <td scope="col"><input type="text" id="MOM_UNKNOWN_EX" name="MOM_UNKNOWN_EX" value=""></td>
+            <td scope="col"><input type="text" id="MOM_UNKNOWN_EN" name="MOM_UNKNOWN_EN" value=""></td>
         </tr>
-        <tr class="row">
-            <td scope="col" class="col-md-0.48"><input type="date" id="TOLLDATE1" name="TOLLDATE1" value="" /></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="CAR_EX1" name="CAR_EX1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="TRUCK_EX1" name="TRUCK_EX1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_CAR_EX1" name="YOY_CAR_EX1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_TRUCK_EX1" name="YOY_TRUCK_EX1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_CAR_EX1" name="MOM_CAR_EX1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_TRUCK_EX1" name="MOM_TRUCK_EX1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="CAR_EN1" name="CAR_EN1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="TRUCK_EN1" name="TRUCK_EN1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_CAR_EN1" name="YOY_CAR_EN1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_TRUCK_EN1" name="YOY_TRUCK_EN1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_CAR_EN1" name="MOM_CAR_EN1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_TRUCK_EN1" name="MOM_TRUCK_EN1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="PERSONFLOW1" name="PERSONFLOW1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="CARFLOW1" name="CARFLOW1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="TRUCKFLOW1" name="TRUCKFLOW1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_PERSONFLOW1" name="MOM_PERSONFLOW1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_CARFLOW1" name="MOM_CARFLOW1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="MOM_TRUCKFLOW1" name="MOM_TRUCKFLOW1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="UNKNOWN_EX1" name="UNKNOWN_EX1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="UNKNOWN_EN1" name="UNKNOWN_EN1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_UNKNOWN_EX1" name="YOY_UNKNOWN_EX1" value=""></td>
-            <td scope="col" class="col-md-0.48"><input type="number" id="YOY_UNKNOWN_EN1" name="YOY_UNKNOWN_EN1" value=""></td>
-            <td scope="col"class="col-md-0.48"><input type="number" id="MOM_UNKNOWN_EX1" name="MOM_UNKNOWN_EX1" value=""></td>
-            <td scope="col"><input type="number" id="MOM_UNKNOWN_EN1" name="MOM_UNKNOWN_EN1" value=""></td>
+        <tr>
+            <td scope="col"><input type="text" id="CAR_EX1" name="CAR_EX1" value="" onblur="setCAR_EX()"></td>
+            <td scope="col"><input type="text" id="TRUCK_EX1" name="TRUCK_EX1" value="" onblur="setTRUCK_EX()"></td>
+            <td scope="col"><input type="text" id="YOY_CAR_EX1" name="YOY_CAR_EX1" value="" onblur="setYOY_CAR_EX1()"></td>
+            <td scope="col"><input type="text" id="YOY_TRUCK_EX1" name="YOY_TRUCK_EX1" value="" onblur="setYOY_TRUCK_EX()"></td>
+            <td scope="col"><input type="text" id="MOM_CAR_EX1" name="MOM_CAR_EX1" value="" onblur="setMOM_CAR_EX()"></td>
+            <td scope="col"><input type="text" id="MOM_TRUCK_EX1" name="MOM_TRUCK_EX1" value="" onblur="setMOM_TRUCK_EX()"></td>
+            <td scope="col"><input type="text" id="CAR_EN1" name="CAR_EN1" value="" onblur="setCAR_EN()"></td>
+            <td scope="col"><input type="text" id="TRUCK_EN1" name="TRUCK_EN1" value="" onblur="setTRUCK_EN()"></td>
+            <td scope="col"><input type="text" id="YOY_CAR_EN1" name="YOY_CAR_EN1" value="" onblur="setYOY_CAR_EN()"></td>
+            <td scope="col"><input type="text" id="YOY_TRUCK_EN1" name="YOY_TRUCK_EN1" value="" onblur="setYOY_TRUCK_EN()"></td>
+            <td scope="col"><input type="text" id="MOM_CAR_EN1" name="MOM_CAR_EN1" value="" onblur="setMOM_CAR_EN()"></td>
+            <td scope="col"><input type="text" id="MOM_TRUCK_EN1" name="MOM_TRUCK_EN1" value="" onblur="setMOM_TRUCK_EN()"></td>
+            <td scope="col"><input type="text" id="PERSONFLOW1" name="PERSONFLOW1" value=""></td>
+            <td scope="col"><input type="text" id="CARFLOW1" name="CARFLOW1" value=""></td>
+            <td scope="col"><input type="text" id="TRUCKFLOW1" name="TRUCKFLOW1" value=""></td>
+            <td scope="col"><input type="text" id="MOM_PERSONFLOW1" name="MOM_PERSONFLOW1" value=""></td>
+            <td scope="col"><input type="text" id="MOM_CARFLOW1" name="MOM_CARFLOW1" value=""></td>
+            <td scope="col"><input type="text" id="MOM_TRUCKFLOW1" name="MOM_TRUCKFLOW1" value=""></td>
+            <td scope="col"><input type="text" id="UNKNOWN_EX1" name="UNKNOWN_EX1" value=""></td>
+            <td scope="col"><input type="text" id="YOY_UNKNOWN_EX1" name="YOY_UNKNOWN_EX1" value=""></td>
+            <td scope="col"><input type="text" id="MOM_UNKNOWN_EX1" name="MOM_UNKNOWN_EX1" value=""></td>
+            <td scope="col"><input type="text" id="UNKNOWN_EN1" name="UNKNOWN_EN1" value=""></td>
+            <td scope="col"><input type="text" id="YOY_UNKNOWN_EN1" name="YOY_UNKNOWN_EN1" value=""></td>
+            <td scope="col"><input type="text" id="MOM_UNKNOWN_EN1" name="MOM_UNKNOWN_EN1" value=""></td>
         </tr>
         <tr>
             <td scope="col" align="center" colspan="25">
-                <button type="submit" class="btn btn-primary mb-2">提交</button>
                 <p align="center"><font color="red"><span id="message">${msg}</span></font></p>
+                <button type="submit" class="btn btn-primary mb-2">提交</button>
             </td>
         </tr>
         </tbody>
     </table>
-        </div>
-    </div>
 </form>
 </body>
 </html>
