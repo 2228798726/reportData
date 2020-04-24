@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wk.dao.TdWxDailyReportDao">
+
+    <insert id="insert" parameterType="wk.pojo.TdWxDailyReport"  >
+         insert into TD_WX_DAILYREPORT (ID,TOLLDATE,CAR_EX,TRUCK_EX,YOY_CAR_EX,YOY_TRUCK_EX,MOM_CAR_EX,MOM_TRUCK_EX,CAR_EN,TRUCK_EN,YOY_CAR_EN,YOY_TRUCK_EN,
+MOM_CAR_EN,MOM_TRUCK_EN,PERSONFLOW,MOM_PERSONFLOW,CARFLOW,TRUCKFLOW,MOM_CARFLOW,MOM_TRUCKFLOW,UNKNOWN_EX,UNKNOWN_EN,YOY_UNKNOWN_EX,YOY_UNKNOWN_EN,MOM_UNKNOWN_EX,MOM_UNKNOWN_EN)
+         values (#{ID}, #{TOLLDATE}, #{CAR_EX}, #{TRUCK_EX}, #{YOY_CAR_EX}, #{YOY_TRUCK_EX}, #{MOM_CAR_EX}, #{MOM_TRUCK_EX}, #{CAR_EN}, #{TRUCK_EN}, #{YOY_CAR_EN}, #{YOY_TRUCK_EN}, #{MOM_CAR_EN},
+#{MOM_TRUCK_EN}, #{PERSONFLOW}, #{MOM_PERSONFLOW}, #{CARFLOW}, #{TRUCKFLOW}, #{MOM_CARFLOW}, #{MOM_TRUCKFLOW}, #{UNKNOWN_EX,jdbcType=NUMERIC}, #{UNKNOWN_EN,jdbcType=NUMERIC}, #{YOY_UNKNOWN_EX,jdbcType=NUMERIC}, #{YOY_UNKNOWN_EN,jdbcType=NUMERIC},
+#{MOM_UNKNOWN_EX,jdbcType=NUMERIC}, #{MOM_UNKNOWN_EN,jdbcType=NUMERIC})
+  </insert>
+
+</mapper>
