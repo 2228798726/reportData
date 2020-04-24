@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/report/event" method="post" onsubmit="return check()">
+<form action="${pageContext.request.contextPath}/report/daily" method="post" onsubmit="return check()">
     <table class="table table-bordered">
         <thead class="text-center">
         <tr>
@@ -102,10 +102,10 @@
             <td scope="col"><input type="text" id="MOM_CARFLOW" name="MOM_CARFLOW" value=""></td>
             <td scope="col"><input type="text" id="MOM_TRUCKFLOW" name="MOM_TRUCKFLOW" value=""></td>
             <td scope="col"><input type="text" id="UNKNOWN_EX" name="UNKNOWN_EX" value=""></td>
-            <td scope="col"><input type="text" id="UNKNOWN_EN" name="UNKNOWN_EN" value=""></td>
             <td scope="col"><input type="text" id="YOY_UNKNOWN_EX" name="YOY_UNKNOWN_EX" value=""></td>
-            <td scope="col"><input type="text" id="YOY_UNKNOWN_EN" name="YOY_UNKNOWN_EN" value=""></td>
             <td scope="col"><input type="text" id="MOM_UNKNOWN_EX" name="MOM_UNKNOWN_EX" value=""></td>
+            <td scope="col"><input type="text" id="UNKNOWN_EN" name="UNKNOWN_EN" value=""></td>
+            <td scope="col"><input type="text" id="YOY_UNKNOWN_EN" name="YOY_UNKNOWN_EN" value=""></td>
             <td scope="col"><input type="text" id="MOM_UNKNOWN_EN" name="MOM_UNKNOWN_EN" value=""></td>
         </tr>
         <tr>
@@ -121,18 +121,18 @@
             <td scope="col"><input type="text" id="YOY_TRUCK_EN1" name="YOY_TRUCK_EN1" value="" onblur="setYOY_TRUCK_EN()"></td>
             <td scope="col"><input type="text" id="MOM_CAR_EN1" name="MOM_CAR_EN1" value="" onblur="setMOM_CAR_EN()"></td>
             <td scope="col"><input type="text" id="MOM_TRUCK_EN1" name="MOM_TRUCK_EN1" value="" onblur="setMOM_TRUCK_EN()"></td>
-            <td scope="col"><input type="text" id="PERSONFLOW1" name="PERSONFLOW1" value=""></td>
-            <td scope="col"><input type="text" id="CARFLOW1" name="CARFLOW1" value=""></td>
-            <td scope="col"><input type="text" id="TRUCKFLOW1" name="TRUCKFLOW1" value=""></td>
-            <td scope="col"><input type="text" id="MOM_PERSONFLOW1" name="MOM_PERSONFLOW1" value=""></td>
-            <td scope="col"><input type="text" id="MOM_CARFLOW1" name="MOM_CARFLOW1" value=""></td>
-            <td scope="col"><input type="text" id="MOM_TRUCKFLOW1" name="MOM_TRUCKFLOW1" value=""></td>
-            <td scope="col"><input type="text" id="UNKNOWN_EX1" name="UNKNOWN_EX1" value=""></td>
-            <td scope="col"><input type="text" id="YOY_UNKNOWN_EX1" name="YOY_UNKNOWN_EX1" value=""></td>
-            <td scope="col"><input type="text" id="MOM_UNKNOWN_EX1" name="MOM_UNKNOWN_EX1" value=""></td>
-            <td scope="col"><input type="text" id="UNKNOWN_EN1" name="UNKNOWN_EN1" value=""></td>
-            <td scope="col"><input type="text" id="YOY_UNKNOWN_EN1" name="YOY_UNKNOWN_EN1" value=""></td>
-            <td scope="col"><input type="text" id="MOM_UNKNOWN_EN1" name="MOM_UNKNOWN_EN1" value=""></td>
+            <td scope="col"><input type="text" id="PERSONFLOW1" name="PERSONFLOW1" value="" onblur="setPERSONFLOW()"></td>
+            <td scope="col"><input type="text" id="CARFLOW1" name="CARFLOW1" value="" onblur="setCARFLOW()"></td>
+            <td scope="col"><input type="text" id="TRUCKFLOW1" name="TRUCKFLOW1" value="" onblur="setTRUCKFLOW()"></td>
+            <td scope="col"><input type="text" id="MOM_PERSONFLOW1" name="MOM_PERSONFLOW1" value="" onblur="setMOM_PERSONFLOW()"></td>
+            <td scope="col"><input type="text" id="MOM_CARFLOW1" name="MOM_CARFLOW1" value="" onblur="setMOM_CARFLOW()"></td>
+            <td scope="col"><input type="text" id="MOM_TRUCKFLOW1" name="MOM_TRUCKFLOW1" value="" onblur="setMOM_TRUCKFLOW()"></td>
+            <td scope="col"><input type="text" id="UNKNOWN_EX1" name="UNKNOWN_EX1" value="" onblur="setUNKNOWN_EX()"></td>
+            <td scope="col"><input type="text" id="YOY_UNKNOWN_EX1" name="YOY_UNKNOWN_EX1" value="" onblur="setYOY_UNKNOWN_EX()"></td>
+            <td scope="col"><input type="text" id="MOM_UNKNOWN_EX1" name="MOM_UNKNOWN_EX1" value="" onblur="setMOM_UNKNOWN_EX()"></td>
+            <td scope="col"><input type="text" id="UNKNOWN_EN1" name="UNKNOWN_EN1" value="" onblur="setUNKNOWN_EN()"></td>
+            <td scope="col"><input type="text" id="YOY_UNKNOWN_EN1" name="YOY_UNKNOWN_EN1" value="" onblur="setYOY_UNKNOWN_EN1()"></td>
+            <td scope="col"><input type="text" id="MOM_UNKNOWN_EN1" name="MOM_UNKNOWN_EN1" value="" onblur="setMOM_UNKNOWN_EN()"></td>
         </tr>
         <tr>
             <td scope="col" align="center" colspan="25">

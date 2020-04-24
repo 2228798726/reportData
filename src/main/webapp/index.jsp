@@ -48,6 +48,7 @@
             <td scope="col" align="center" colspan="4">
                 <p align="center"><font color="red"><span id="message">${msg}</span></font></p>
                 <button type="submit" class="btn btn-primary mb-2">提交</button>
+                <p align="center"><font color="blue"><span><a href="jsp/event.jsp">添加日常-流量</a></span></font></p>
             </td>
         </tr>
         </tbody>
