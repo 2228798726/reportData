@@ -1,3 +1,7 @@
+var reg = /^([0-9])+$/;
+var reg2 = /^([-]|[0-9])+([.]|[0-9])+\%$/;
+var reg1 = /^([0-9])+$/;
+
 //判断数据不能为空
 function check() {
     var TOLLDATE1=$("#TOLLDATE").val();
@@ -26,9 +30,6 @@ function check() {
     var MOM_UNKNOWN_EX1=$("#MOM_UNKNOWN_EX1").val();
     var MOM_UNKNOWN_EN1=$("#MOM_UNKNOWN_EN1").val();
 
-    var reg = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]+\%)$/;
-
     if (TOLLDATE1 == ""){
         $("#message").text("日期不能为空！");
         return false;
@@ -56,7 +57,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(YOY_CAR_EX1)){
-            $("#message").text("出口车流量同比客车车流量只能为保留两位小数的百分数!");
+            $("#message").text("出口车流量同比客车车流量只能为百分数!");
             return false;
         }
     }
@@ -65,7 +66,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(YOY_TRUCK_EX1)){
-            $("#message").text("出口车流量同比货车车流量只能为保留两位小数的百分数!");
+            $("#message").text("出口车流量同比货车车流量只能为百分数!");
             return false;
         }
     }
@@ -74,7 +75,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(MOM_CAR_EX1)){
-            $("#message").text("出口车流量环比客车车流量只能为保留两位小数的百分数!");
+            $("#message").text("出口车流量环比客车车流量只能为百分数!");
             return false;
         }
     }
@@ -83,7 +84,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(MOM_TRUCK_EX1)){
-            $("#message").text("出口车流量环比货车车流量只能为保留两位小数的百分数!");
+            $("#message").text("出口车流量环比货车车流量只能为百分数!");
             return false;
         }
     }
@@ -110,7 +111,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(YOY_CAR_EN1)){
-            $("#message").text("入口车流量同比客车车流量只能为保留两位小数的百分数!");
+            $("#message").text("入口车流量同比客车车流量只能为百分数!");
             return false;
         }
     }
@@ -119,7 +120,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(YOY_TRUCK_EN1)){
-            $("#message").text("入口车流量同比货车车流量只能为保留两位小数的百分数!");
+            $("#message").text("入口车流量同比货车车流量只能为百分数!");
             return false;
         }
     }
@@ -128,7 +129,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(MOM_CAR_EN1)){
-            $("#message").text("入口车流量环比客车车流量只能为保留两位小数的百分数!");
+            $("#message").text("入口车流量环比客车车流量只能为百分数!");
             return false;
         }
     }
@@ -137,7 +138,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(MOM_TRUCK_EN1)){
-            $("#message").text("入口车流量环比货车车流量只能为保留两位小数的百分数!");
+            $("#message").text("入口车流量环比货车车流量只能为百分数!");
             return false;
         }
     }
@@ -155,7 +156,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(MOM_PERSONFLOW1)){
-            $("#message").text("服务区环比人流量只能为保留两位小数的百分数!");
+            $("#message").text("服务区环比人流量只能为百分数!");
             return false;
         }
     }
@@ -191,7 +192,7 @@ function check() {
         return false;
     }else{
         if(!reg2.test(MOM_TRUCKFLOW1)){
-            $("#message").text("服务区环比货车流量只能为保留两位小数的百分数!");
+            $("#message").text("服务区环比货车流量只能为百分数!");
             return false;
         }
     }
@@ -203,13 +204,13 @@ function check() {
     }
     if(YOY_UNKNOWN_EX1!=""){
         if(!reg2.test(YOY_UNKNOWN_EX1)){
-            $("#message").text("出口未知车型同比车车流量只能为保留两位小数的百分数!!");
+            $("#message").text("出口未知车型同比车车流量只能为百分数!!");
             return false;
         }
     }
     if(MOM_UNKNOWN_EX1!=""){
         if(!reg2.test(MOM_UNKNOWN_EX1)){
-            $("#message").text("出口未知车型环比车车流量只能为保留两位小数的百分数!!");
+            $("#message").text("出口未知车型环比车车流量只能为百分数!!");
             return false;
         }
     }
@@ -221,13 +222,13 @@ function check() {
     }
     if(YOY_UNKNOWN_EN1!=""){
         if(!reg2.test(YOY_UNKNOWN_EN1)){
-            $("#message").text("入口未知车型同比车车流量只能为保留两位小数的百分数!!");
+            $("#message").text("入口未知车型同比车车流量只能为百分数!!");
             return false;
         }
     }
     if(MOM_UNKNOWN_EN1!=""){
         if(!reg2.test(MOM_UNKNOWN_EN1)){
-            $("#message").text("入口未知车型环比车车流量只能为保留两位小数的百分数!!");
+            $("#message").text("入口未知车型环比车车流量只能为百分数!!");
             return false;
         }
     }
@@ -240,10 +241,16 @@ function check() {
 function transNumber(str) {
     if (str.indexOf("-") != -1 ){
         var newstr=str.replace("%", "").replace("-","");
+        if(newstr.substr(-2, 1)=="."){
+            newstr=newstr.replace(".","");
+        }
         var number=parseFloat(newstr)/100*-1;
         return number;
     }else{
         var newstr=str.replace(/%/, "");
+        if(newstr.substr(-2, 1)=="."){
+            newstr=newstr.replace(".","");
+        }
         var number=parseFloat(newstr)/100;
         return number;
     }
@@ -253,8 +260,7 @@ function transNumber(str) {
 //设置出口车流量当日客车车流量的值
 function setCAR_EX(){
     var CAR_EX1=$("#CAR_EX1").val();
-    var reg = /^([0-9])+$/;
-    // var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
+
     if(CAR_EX1!=""){
         if(reg.test(CAR_EX1)){
             $("#CAR_EX").val(CAR_EX1);
@@ -271,8 +277,6 @@ function setCAR_EX(){
 //设置出口车流量当日货车车流量的值
 function setTRUCK_EX(){
     var TRUCK_EX=$("#TRUCK_EX1").val();
-    var reg = /^([0-9])+$/;
-    // var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(TRUCK_EX!=""){
         if(reg.test(TRUCK_EX)){
             $("#TRUCK_EX").val(TRUCK_EX);
@@ -290,8 +294,6 @@ function setTRUCK_EX(){
 function setYOY_CAR_EX1(){
     var YOY_CAR_EX1=$("#YOY_CAR_EX1").val();
     var CAR_EX=$("#CAR_EX").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(YOY_CAR_EX1!=""){
         if(CAR_EX!=""){
             if(reg2.test(YOY_CAR_EX1)){
@@ -306,7 +308,7 @@ function setYOY_CAR_EX1(){
                     $("#message").text("出口车流量当日客车车流量只能为整数");
                 }
             }else{
-                $("#message").text("出口车流量同比客车车流量只能为保留两位小数的百分数");
+                $("#message").text("出口车流量同比客车车流量只能为百分数");
             }
         } else{
             $("#message").text("出口车流量当日客车车流量不能为空！");
@@ -321,8 +323,6 @@ function setYOY_CAR_EX1(){
 function setYOY_TRUCK_EX(){
     var YOY_TRUCK_EX1=$("#YOY_TRUCK_EX1").val();
     var TRUCK_EX=$("#TRUCK_EX").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(YOY_TRUCK_EX1!=""){
         if(TRUCK_EX!=""){
             if(reg2.test(YOY_TRUCK_EX1)){
@@ -337,7 +337,7 @@ function setYOY_TRUCK_EX(){
                     $("#message").text("出口车流量当日货车车流量只能为整数");
                 }
             }else{
-                $("#message").text("出口车流量同比货车车流量只能为保留两位小数的百分数");
+                $("#message").text("出口车流量同比货车车流量只能为百分数");
             }
         } else{
             $("#message").text("出口车流量当日货车车流量不能为空！");
@@ -352,8 +352,7 @@ function setYOY_TRUCK_EX(){
 function setMOM_CAR_EX(){
     var MOM_CAR_EX1=$("#MOM_CAR_EX1").val();
     var CAR_EX=$("#CAR_EX").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
+
     if(MOM_CAR_EX1!=""){
         if(CAR_EX!=""){
             if(reg2.test(MOM_CAR_EX1)){
@@ -383,8 +382,6 @@ function setMOM_CAR_EX(){
 function setMOM_TRUCK_EX(){
     var MOM_TRUCK_EX1=$("#MOM_TRUCK_EX1").val();
     var TRUCK_EX=$("#TRUCK_EX").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(MOM_TRUCK_EX1!=""){
         if(TRUCK_EX!=""){
             if(reg2.test(MOM_TRUCK_EX1)){
@@ -399,7 +396,7 @@ function setMOM_TRUCK_EX(){
                     $("#message").text("出口车流量当日货车车流量只能为整数");
                 }
             }else{
-                $("#message").text("出口车流量同比货车车流量只能为保留两位小数的百分数");
+                $("#message").text("出口车流量同比货车车流量只能为百分数");
             }
         } else{
             $("#message").text("出口车流量当日货车车流量不能为空！");
@@ -432,8 +429,6 @@ function setCAR_EN(){
 //设置入口车流量当日货车车流量的值
 function setTRUCK_EN(){
     var TRUCK_EN=$("#TRUCK_EN1").val();
-    var reg = /^([0-9])+$/;
-    // var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(TRUCK_EN!=""){
         if(reg.test(TRUCK_EN)){
             $("#TRUCK_EN").val(TRUCK_EN);
@@ -451,8 +446,6 @@ function setTRUCK_EN(){
 function setYOY_CAR_EN(){
     var YOY_CAR_EN1=$("#YOY_CAR_EN1").val();
     var CAR_EN=$("#CAR_EN").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(YOY_CAR_EN1!=""){
         if(CAR_EN!=""){
             if(reg2.test(YOY_CAR_EN1)){
@@ -467,7 +460,7 @@ function setYOY_CAR_EN(){
                     $("#message").text("入口车流量当日客车车流量只能为整数");
                 }
             }else{
-                $("#message").text("入口车流量同比客车车流量只能为保留两位小数的百分数");
+                $("#message").text("入口车流量同比客车车流量只能为百分数");
             }
         } else{
             $("#message").text("入口车流量当日客车车流量不能为空！");
@@ -482,8 +475,6 @@ function setYOY_CAR_EN(){
 function setYOY_TRUCK_EN(){
     var YOY_TRUCK_EN=$("#YOY_TRUCK_EN1").val();
     var TRUCK_EN=$("#TRUCK_EN").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(YOY_TRUCK_EN!=""){
         if(TRUCK_EN!=""){
             if(reg2.test(YOY_TRUCK_EN)){
@@ -498,7 +489,7 @@ function setYOY_TRUCK_EN(){
                     $("#message").text("入口车流量当日货车车流量只能为整数");
                 }
             }else{
-                $("#message").text("入口车流量同比货车车流量只能为保留两位小数的百分数");
+                $("#message").text("入口车流量同比货车车流量只能为百分数");
             }
         } else{
             $("#message").text("入口车流量当日货车车流量不能为空！");
@@ -513,8 +504,6 @@ function setYOY_TRUCK_EN(){
 function setMOM_CAR_EN(){
     var MOM_CAR_EN=$("#MOM_CAR_EN1").val();
     var CAR_EN=$("#CAR_EN").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(MOM_CAR_EN!=""){
         if(CAR_EN!=""){
             if(reg2.test(MOM_CAR_EN)){
@@ -529,7 +518,7 @@ function setMOM_CAR_EN(){
                     $("#message").text("入口车流量当日客车车流量只能为整数");
                 }
             }else{
-                $("#message").text("入口车流量环比客车车流量只能为保留两位小数的百分数");
+                $("#message").text("入口车流量环比客车车流量只能为百分数");
             }
         } else{
             $("#message").text("入口车流量当日客车车流量不能为空！");
@@ -544,8 +533,6 @@ function setMOM_CAR_EN(){
 function setMOM_TRUCK_EN(){
     var MOM_TRUCK_EN1=$("#MOM_TRUCK_EN1").val();
     var TRUCK_EN=$("#TRUCK_EN").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(MOM_TRUCK_EN1!=""){
         if(TRUCK_EN!=""){
             if(reg2.test(MOM_TRUCK_EN1)){
@@ -560,7 +547,7 @@ function setMOM_TRUCK_EN(){
                     $("#message").text("入口车流量当日货车车流量只能为整数");
                 }
             }else{
-                $("#message").text("入口车流量同比货车车流量只能为保留两位小数的百分数");
+                $("#message").text("入口车流量同比货车车流量只能为百分数");
             }
         } else{
             $("#message").text("入口车流量当日货车车流量不能为空！");
@@ -575,8 +562,6 @@ function setMOM_TRUCK_EN(){
 //设置服务区当日人流量的值
 function setPERSONFLOW(){
     var PERSONFLOW1=$("#PERSONFLOW1").val();
-    var reg = /^([0-9])+$/;
-    // var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(PERSONFLOW1!=""){
         if(reg.test(PERSONFLOW1)){
             $("#PERSONFLOW").val(PERSONFLOW1);
@@ -593,8 +578,6 @@ function setPERSONFLOW(){
 //设置服务区当日客车流量的值
 function setCARFLOW(){
     var CARFLOW1=$("#CARFLOW1").val();
-    var reg = /^([0-9])+$/;
-    // var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(CARFLOW1!=""){
         if(reg.test(CARFLOW1)){
             $("#CARFLOW").val(CARFLOW1);
@@ -611,8 +594,6 @@ function setCARFLOW(){
 //设置服务区当日货车流量的值
 function setTRUCKFLOW(){
     var TRUCKFLOW1=$("#TRUCKFLOW1").val();
-    var reg = /^([0-9])+$/;
-    // var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(TRUCKFLOW1!=""){
         if(reg.test(TRUCKFLOW1)){
             $("#TRUCKFLOW").val(TRUCKFLOW1);
@@ -630,8 +611,6 @@ function setTRUCKFLOW(){
 function setMOM_PERSONFLOW(){
     var MOM_PERSONFLOW1=$("#MOM_PERSONFLOW1").val();
     var PERSONFLOW=$("#PERSONFLOW").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(MOM_PERSONFLOW1!=""){
         if(PERSONFLOW!=""){
             if(reg2.test(MOM_PERSONFLOW1)){
@@ -646,7 +625,7 @@ function setMOM_PERSONFLOW(){
                     $("#message").text("服务区当日人流量只能为整数");
                 }
             }else{
-                $("#message").text("服务区环比人流量只能为保留两位小数的百分数");
+                $("#message").text("服务区环比人流量只能为百分数");
             }
         } else{
             $("#message").text("服务区当日人流量不能为空！");
@@ -661,8 +640,6 @@ function setMOM_PERSONFLOW(){
 function setMOM_CARFLOW(){
     var MOM_CARFLOW1=$("#MOM_CARFLOW1").val();
     var CARFLOW=$("#CARFLOW").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(MOM_CARFLOW1!=""){
         if(CARFLOW!=""){
             if(reg2.test(MOM_CARFLOW1)){
@@ -677,7 +654,7 @@ function setMOM_CARFLOW(){
                     $("#message").text("服务区当日客车流量只能为整数");
                 }
             }else{
-                $("#message").text("服务区环比客车流量只能为保留两位小数的百分数");
+                $("#message").text("服务区环比客车流量只能为百分数");
             }
         } else{
             $("#message").text("服务区当日客车流量不能为空！");
@@ -692,8 +669,6 @@ function setMOM_CARFLOW(){
 function setMOM_TRUCKFLOW(){
     var MOM_TRUCKFLOW=$("#MOM_TRUCKFLOW1").val();
     var TRUCKFLOW=$("#TRUCKFLOW").val();
-    var reg1 = /^([0-9])+$/;
-    var reg2 = /^([-]|[0-9])+\.([0-9]{2}\%)$/;
     if(MOM_TRUCKFLOW!=""){
         if(TRUCKFLOW!=""){
             if(reg2.test(MOM_TRUCKFLOW)){
@@ -708,7 +683,7 @@ function setMOM_TRUCKFLOW(){
                     $("#message").text("服务区当日货车流量只能为整数");
                 }
             }else{
-                $("#message").text("服务区环比货车流量只能为保留两位小数的百分数");
+                $("#message").text("服务区环比货车流量只能为百分数");
             }
         } else{
             $("#message").text("服务区当日货车流量不能为空！");
@@ -723,8 +698,6 @@ function setMOM_TRUCKFLOW(){
 //设置出口未知车型当日车流量
 function setUNKNOWN_EX(){
     var UNKNOWN_EX1=$("#UNKNOWN_EX1").val();
-    var reg = /^([0-9])+$/;
-    // var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(UNKNOWN_EX1!=""){
         if(reg.test(UNKNOWN_EX1)){
             $("#UNKNOWN_EX").val(UNKNOWN_EX1);
@@ -749,10 +722,8 @@ function setYOY_UNKNOWN_EX(){
 
     var YOY_UNKNOWN_EX=$("#YOY_UNKNOWN_EX1").val();
 
-    // var reg = /^([0-9])+$/;
-    var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(YOY_UNKNOWN_EX!=""){
-        if(reg.test(YOY_UNKNOWN_EX)){
+        if(reg2.test(YOY_UNKNOWN_EX)){
             if(UNKNOWN_EX!=""&&CAR_EX!=""&&TRUCK_EX!=""&&YOY_CAR_EX!=""&&YOY_TRUCK_EX!=""){
                 var result=(parseInt(UNKNOWN_EX)+parseInt(CAR_EX)+ parseInt(TRUCK_EX)- parseInt(YOY_CAR_EX)
                     -parseInt(YOY_TRUCK_EX)-(transNumber(YOY_UNKNOWN_EX)*(parseInt(YOY_CAR_EX)+parseInt(YOY_TRUCK_EX))))/(1+transNumber(YOY_UNKNOWN_EX));
@@ -766,7 +737,7 @@ function setYOY_UNKNOWN_EX(){
             }
 
         }else{
-            $("#message").text("出口未知车型同比车流量只能为保留两位小数的百分数！");
+            $("#message").text("出口未知车型同比车流量只能为百分数！");
         }
     }
     else{
@@ -785,10 +756,8 @@ function setMOM_UNKNOWN_EX(){
 
     var MOM_UNKNOWN_EX=$("#MOM_UNKNOWN_EX1").val();
 
-    // var reg = /^([0-9])+$/;
-    var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(MOM_UNKNOWN_EX!=""){
-        if(reg.test(MOM_UNKNOWN_EX)){
+        if(reg2.test(MOM_UNKNOWN_EX)){
             if(UNKNOWN_EX!=""&&CAR_EX!=""&&TRUCK_EX!=""&&MOM_CAR_EX!=""&&MOM_TRUCK_EX!=""){
                 var result=(parseInt(UNKNOWN_EX)+parseInt(CAR_EX)+ parseInt(TRUCK_EX)- parseInt(MOM_CAR_EX)
                     -parseInt(MOM_TRUCK_EX)-transNumber(MOM_UNKNOWN_EX)*(parseInt(MOM_CAR_EX)+parseInt(MOM_TRUCK_EX)))/(1+transNumber(MOM_UNKNOWN_EX));
@@ -802,7 +771,7 @@ function setMOM_UNKNOWN_EX(){
             }
 
         }else{
-            $("#message").text("出口未知车型环比车流量只能为保留两位小数的百分数！");
+            $("#message").text("出口未知车型环比车流量只能为百分数！");
         }
     }
     else{
@@ -814,8 +783,6 @@ function setMOM_UNKNOWN_EX(){
 //设置入口未知车型当日车流量
 function setUNKNOWN_EN(){
     var UNKNOWN_EN1=$("#UNKNOWN_EN1").val();
-    var reg = /^([0-9])+$/;
-    // var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(UNKNOWN_EN1!=""){
         if(reg.test(UNKNOWN_EN1)){
             $("#UNKNOWN_EN").val(UNKNOWN_EN1);
@@ -839,11 +806,8 @@ function setYOY_UNKNOWN_EN1(){
     var YOY_TRUCK_EN=$("#YOY_TRUCK_EN").val();
 
     var YOY_UNKNOWN_EN1=$("#YOY_UNKNOWN_EN1").val();
-
-    // var reg = /^([0-9])+$/;
-    var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(YOY_UNKNOWN_EN1!=""){
-        if(reg.test(YOY_UNKNOWN_EN1)){
+        if(reg2.test(YOY_UNKNOWN_EN1)){
             if(UNKNOWN_EN!=""&&CAR_EN!=""&&TRUCK_EN!=""&&YOY_CAR_EN!=""&&YOY_TRUCK_EN!=""){
                 var result=(parseInt(UNKNOWN_EN)+parseInt(CAR_EN)+ parseInt(TRUCK_EN)- parseInt(YOY_CAR_EN)
                     -parseInt(YOY_TRUCK_EN)-(transNumber(YOY_UNKNOWN_EN1)*(parseInt(YOY_CAR_EN)+parseInt(YOY_TRUCK_EN))))/(1+transNumber(YOY_UNKNOWN_EN1));
@@ -857,7 +821,7 @@ function setYOY_UNKNOWN_EN1(){
             }
 
         }else{
-            $("#message").text("入口未知车型同比车流量只能为保留两位小数的百分数！");
+            $("#message").text("入口未知车型同比车流量只能为百分数！");
         }
     }
     else{
@@ -876,10 +840,8 @@ function setMOM_UNKNOWN_EN(){
 
     var MOM_UNKNOWN_EN=$("#MOM_UNKNOWN_EN1").val();
 
-    // var reg = /^([0-9])+$/;
-    var reg = /^([-]|[0-9])+\.([0-9]+\%)$/;
     if(MOM_UNKNOWN_EN!=""){
-        if(reg.test(MOM_UNKNOWN_EN)){
+        if(reg2.test(MOM_UNKNOWN_EN)){
             if(UNKNOWN_EN!=""&&CAR_EN!=""&&TRUCK_EN!=""&&MOM_CAR_EN!=""&&MOM_TRUCK_EN!=""){
                 var result=(parseInt(UNKNOWN_EN)+parseInt(CAR_EN)+ parseInt(TRUCK_EN)- parseInt(MOM_CAR_EN)
                     -parseInt(MOM_TRUCK_EN)-transNumber(MOM_UNKNOWN_EN)*(parseInt(MOM_CAR_EN)+parseInt(MOM_TRUCK_EN)))/(1+transNumber(MOM_UNKNOWN_EN));
@@ -893,7 +855,7 @@ function setMOM_UNKNOWN_EN(){
             }
 
         }else{
-            $("#message").text("入口未知车型环比车流量只能为保留两位小数的百分数！");
+            $("#message").text("入口未知车型环比车流量只能为百分数！");
         }
     }
     else{

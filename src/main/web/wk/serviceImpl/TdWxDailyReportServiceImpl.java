@@ -6,6 +6,8 @@ import wk.dao.TdWxDailyReportDao;
 import wk.pojo.TdWxDailyReport;
 import wk.service.TdWxDailyReportService;
 
+import java.util.List;
+
 /**
  * @author 李沛然
  */
@@ -23,5 +25,10 @@ public class TdWxDailyReportServiceImpl implements TdWxDailyReportService {
     @Override
     public int insert(TdWxDailyReport tdWxDailyReport) {
         return tdWxDailyReportDao.insert(tdWxDailyReport);
+    }
+
+    @Override
+    public int insertMulti(List<TdWxDailyReport> tdWxDailyReportList) {
+        return tdWxDailyReportDao.insertMulti(tdWxDailyReportList);
     }
 }

@@ -5,5 +5,21 @@
     <insert id="insert" parameterType="wk.pojo.TdWxDavenportRoadInfo"  >
      insert into TD_WX_DAILYREPORT_ROADINFO (ID,TOLLDATE,TYPE,OWNERNAME,CONTENT) values (#{ID},#{TOLLDATE},#{TYPE},#{OWNERNAME},#{CONTENT})
   </insert>
+    <insert id="insertMulti" parameterType="java.util.List"  >
+     insert into TD_WX_DAILYREPORT_ROADINFO (ID,TOLLDATE,TYPE,OWNERNAME,CONTENT)
+        select A.*
+        from(
+        <foreach collection="list" item="item" separator="union all" >
+            select
+            #{item.ID} ID,
+            #{item.TOLLDATE} TOLLDATE,
+            #{item.TYPE} TYPE,
+            #{item.OWNERNAME} OWNERNAME,
+            #{item.CONTENT} CONTENT
+            from dual
+        </foreach>
+        )A
+  </insert>
+
 
 </mapper>

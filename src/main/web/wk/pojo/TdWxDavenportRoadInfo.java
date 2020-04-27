@@ -43,7 +43,6 @@ public class TdWxDavenportRoadInfo {
     public void setTOLLDATE(Date TOLLDATE) {
         java.sql.Date sqlDate = new java.sql.Date(TOLLDATE.getTime());
         this.TOLLDATE = sqlDate;
-        System.out.println(sqlDate);
     }
 
     public Integer getTYPE() {

@@ -82,31 +82,23 @@
         </thead>
         <tbody>
         <tr>
-            <td scope="col" rowspan="2"><input type="date" id="TOLLDATE" name="TOLLDATE" value="" /></td>
-            <td scope="col"><input type="text" id="CAR_EX" name="CAR_EX" value=""></td>
-            <td scope="col"><input type="text" id="TRUCK_EX" name="TRUCK_EX" value=""></td>
-            <td scope="col"><input type="text" id="YOY_CAR_EX" name="YOY_CAR_EX" value=""></td>
-            <td scope="col"><input type="text" id="YOY_TRUCK_EX" name="YOY_TRUCK_EX" value=""></td>
-            <td scope="col"><input type="text" id="MOM_CAR_EX" name="MOM_CAR_EX" value=""></td>
-            <td scope="col"><input type="text" id="MOM_TRUCK_EX" name="MOM_TRUCK_EX" value=""></td>
-            <td scope="col"><input type="text" id="CAR_EN" name="CAR_EN" value=""></td>
-            <td scope="col"><input type="text" id="TRUCK_EN" name="TRUCK_EN" value=""></td>
-            <td scope="col"><input type="text" id="YOY_CAR_EN" name="YOY_CAR_EN" value=""></td>
-            <td scope="col"><input type="text" id="YOY_TRUCK_EN" name="YOY_TRUCK_EN" value=""></td>
-            <td scope="col"><input type="text" id="MOM_CAR_EN" name="MOM_CAR_EN" value=""></td>
-            <td scope="col"><input type="text" id="MOM_TRUCK_EN" name="MOM_TRUCK_EN" value=""></td>
-            <td scope="col"><input type="text" id="PERSONFLOW" name="PERSONFLOW" value=""></td>
-            <td scope="col"><input type="text" id="CARFLOW" name="CARFLOW" value=""></td>
-            <td scope="col"><input type="text" id="TRUCKFLOW" name="TRUCKFLOW" value=""></td>
-            <td scope="col"><input type="text" id="MOM_PERSONFLOW" name="MOM_PERSONFLOW" value=""></td>
-            <td scope="col"><input type="text" id="MOM_CARFLOW" name="MOM_CARFLOW" value=""></td>
-            <td scope="col"><input type="text" id="MOM_TRUCKFLOW" name="MOM_TRUCKFLOW" value=""></td>
+
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
             <td scope="col"><input type="text" id="UNKNOWN_EX" name="UNKNOWN_EX" value=""></td>
-            <td scope="col"><input type="text" id="YOY_UNKNOWN_EX" name="YOY_UNKNOWN_EX" value=""></td>
-            <td scope="col"><input type="text" id="MOM_UNKNOWN_EX" name="MOM_UNKNOWN_EX" value=""></td>
             <td scope="col"><input type="text" id="UNKNOWN_EN" name="UNKNOWN_EN" value=""></td>
-            <td scope="col"><input type="text" id="YOY_UNKNOWN_EN" name="YOY_UNKNOWN_EN" value=""></td>
-            <td scope="col"><input type="text" id="MOM_UNKNOWN_EN" name="MOM_UNKNOWN_EN" value=""></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
         </tr>
         <tr>
             <td scope="col"><input type="text" id="CAR_EX1" name="CAR_EX1" value="" onblur="setCAR_EX()"></td>

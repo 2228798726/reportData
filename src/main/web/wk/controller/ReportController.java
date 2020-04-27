@@ -1,5 +1,10 @@
 package wk.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
+import com.mchange.v2.c3p0.stmt.GooGooStatementCache;
 import com.result.ResultEntity;
 import com.util.GUIDUtil;
 import com.util.MessageConstatnt;
@@ -7,17 +12,17 @@ import com.util.ResourcesUtil;
 import oracle.jdbc.oracore.TDSPatch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import wk.pojo.TdObiect;
 import wk.pojo.TdWxDailyReport;
 import wk.pojo.TdWxDavenportRoadInfo;
 import wk.serviceImpl.TdWxDailyReportServiceImpl;
 import wk.serviceImpl.TdWxDavenportRoadInfoServiceImpl;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 李沛然
@@ -159,4 +164,79 @@ public class ReportController {
             return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
         }
     }
+
+
+    /**
+     * 批量添加日报-事件
+     * @param tdWxDavenportRoadInfoList
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/event_multi",method = RequestMethod.POST)
+    public ResultEntity<Object> insertMultiEvents(@RequestBody String tdWxDavenportRoadInfoList){
+//        TdObiect tdObiect =
+//                new GsonBuilder().create().fromJson(tdWxDavenportRoadInfoList,new TypeToken<TdObiect>() {}.getType());
+        Gson gson=new Gson();
+        TdObiect tdObiect =gson.fromJson(tdWxDavenportRoadInfoList,TdObiect.class);
+        System.out.println(tdObiect);
+
+            for (TdWxDavenportRoadInfo tdWxDavenportRoadInfo:tdObiect.getTdWxDavenportRoadInfos()){
+                //设置ID
+                tdWxDavenportRoadInfo.setID(GUIDUtil.getGUID());
+                tdWxDavenportRoadInfo.setTOLLDATE(tdWxDavenportRoadInfo.getTOLLDATE());
+            }
+            tdObiect.getTdWxDailyReport().setID(GUIDUtil.getGUID());
+            tdObiect.getTdWxDailyReport().setTOLLDATE(tdObiect.getTdWxDailyReport().getTOLLDATE());
+
+        try {
+            //如果插入数据成功，则返回状态码0，成功
+            if (tdWxDavenportRoadInfoService.insertMulti(tdObiect.getTdWxDavenportRoadInfos()) != 0) {
+                if (tdWxDailyReportService.insert(tdObiect.getTdWxDailyReport())!=0) {
+                    return ResultEntity.createSuccessResult(null);
+                }
+                else {
+                    //失败返回上传失败，状态码为1001
+                    return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
+                }
+            } else {
+                //失败返回上传失败，状态码为1001
+                return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            //失败返回上传失败，状态码为1001
+            return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
+        }
+    }
+
+    /**
+     * 批量添加日报-流量
+     * @param tdWxDailyReportList
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/daily_multi",method = RequestMethod.POST)
+    public ResultEntity<Object> insertMulti_daily(@RequestBody String tdWxDailyReportList){
+        List<TdWxDailyReport> tdWxDailyReports=new GsonBuilder().create().fromJson(tdWxDailyReportList,new TypeToken<List<TdWxDavenportRoadInfo>>() {}.getType());
+
+        for (TdWxDailyReport tdWxDailyReport:tdWxDailyReports) {
+            //设置ID
+            tdWxDailyReport.setID(GUIDUtil.getGUID());
+            tdWxDailyReport.setTOLLDATE(tdWxDailyReport.getTOLLDATE());
+        }
+        try {
+            //如果插入数据成功，则返回状态码0，成功
+            if (tdWxDailyReportService.insertMulti(tdWxDailyReports) != 0) {
+                return ResultEntity.createSuccessResult(null);
+            } else {
+                //失败返回上传失败，状态码为1001
+                return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            //失败返回上传失败，状态码为1001
+            return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
+        }
+    }
 }
+
