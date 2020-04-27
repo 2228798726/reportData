@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.mchange.v2.c3p0.stmt.GooGooStatementCache;
 import com.result.ResultEntity;
+import com.util.Assignment;
 import com.util.GUIDUtil;
 import com.util.MessageConstatnt;
 import com.util.ResourcesUtil;
@@ -174,24 +175,21 @@ public class ReportController {
     @ResponseBody
     @RequestMapping(value = "/event_multi",method = RequestMethod.POST)
     public ResultEntity<Object> insertMultiEvents(@RequestBody String tdWxDavenportRoadInfoList){
-//        TdObiect tdObiect =
-//                new GsonBuilder().create().fromJson(tdWxDavenportRoadInfoList,new TypeToken<TdObiect>() {}.getType());
+
         Gson gson=new Gson();
         TdObiect tdObiect =gson.fromJson(tdWxDavenportRoadInfoList,TdObiect.class);
-        System.out.println(tdObiect);
+        for (TdWxDavenportRoadInfo tdWxDavenportRoadInfo:tdObiect.getTdWxDavenportRoadInfos()){
+            //设置ID
+            tdWxDavenportRoadInfo.setID(GUIDUtil.getGUID());
+            tdWxDavenportRoadInfo.setTOLLDATE(tdWxDavenportRoadInfo.getTOLLDATE());
+        }
+        System.out.println(tdObiect.getTdReception());
 
-            for (TdWxDavenportRoadInfo tdWxDavenportRoadInfo:tdObiect.getTdWxDavenportRoadInfos()){
-                //设置ID
-                tdWxDavenportRoadInfo.setID(GUIDUtil.getGUID());
-                tdWxDavenportRoadInfo.setTOLLDATE(tdWxDavenportRoadInfo.getTOLLDATE());
-            }
-            tdObiect.getTdWxDailyReport().setID(GUIDUtil.getGUID());
-            tdObiect.getTdWxDailyReport().setTOLLDATE(tdObiect.getTdWxDailyReport().getTOLLDATE());
-
+        TdWxDailyReport tdWxDailyReport= Assignment.assigmentTdWxDailyReport(tdObiect.getTdReception());
         try {
             //如果插入数据成功，则返回状态码0，成功
             if (tdWxDavenportRoadInfoService.insertMulti(tdObiect.getTdWxDavenportRoadInfos()) != 0) {
-                if (tdWxDailyReportService.insert(tdObiect.getTdWxDailyReport())!=0) {
+                if (tdWxDailyReportService.insert(tdWxDailyReport)!=0) {
                     return ResultEntity.createSuccessResult(null);
                 }
                 else {

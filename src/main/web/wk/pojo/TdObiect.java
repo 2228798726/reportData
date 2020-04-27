@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TdObiect {
     List<TdWxDavenportRoadInfo> tdWxDavenportRoadInfos;
-    TdWxDailyReport tdWxDailyReport;
+    TdReception tdReception;
 
     public List<TdWxDavenportRoadInfo> getTdWxDavenportRoadInfos() {
         return tdWxDavenportRoadInfos;
@@ -15,19 +15,11 @@ public class TdObiect {
         this.tdWxDavenportRoadInfos = tdWxDavenportRoadInfos;
     }
 
-    public TdWxDailyReport getTdWxDailyReport() {
-        return tdWxDailyReport;
+    public TdReception getTdReception() {
+        return tdReception;
     }
 
-    public void setTdWxDailyReport(TdWxDailyReport tdWxDailyReport) {
-        this.tdWxDailyReport = tdWxDailyReport;
-    }
-
-    @Override
-    public String toString() {
-        return "TdObiect{" +
-                "tdWxDavenportRoadInfos=" + tdWxDavenportRoadInfos +
-                ", tdWxDailyReport=" + tdWxDailyReport +
-                '}';
+    public void setTdReception(TdReception tdReception) {
+        this.tdReception = tdReception;
     }
 }
