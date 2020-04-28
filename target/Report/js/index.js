@@ -27,17 +27,16 @@ function check() {
     var TRUCKFLOW1=$("#TRUCKFLOW").val();
     var MOM_CARFLOW1=$("#MOM_CARFLOW").val();
     var MOM_TRUCKFLOW1=$("#MOM_TRUCKFLOW").val();
-    var UNKNOWN_EX1=$("#UNKNOWN_EX").val();
-    var UNKNOWN_EN1=$("#UNKNOWN_EN").val();
     var YOY_UNKNOWN_EX1=$("#YOY_UNKNOWN_EX").val();
     var YOY_UNKNOWN_EN1=$("#YOY_UNKNOWN_EN").val();
     var MOM_UNKNOWN_EX1=$("#MOM_UNKNOWN_EX").val();
     var MOM_UNKNOWN_EN1=$("#MOM_UNKNOWN_EN").val();
 
-    if (returnTOLLDATE()==false){
+    if (TOLLDATE1 == ""){
         $("#message").text("日期不能为空！");
         return false;
     }
+
     if (returnOWNERNAME()==false){
         $("#message").text("管理处不能为空！");
         return false;
@@ -48,10 +47,6 @@ function check() {
     }
 
 
-    if (TOLLDATE1 == ""){
-        $("#message").text("车流日期不能为空！");
-        return false;
-    }
     if (CAR_EX1 == ""){
         $("#message").text("出口车流量当日客车车流量不能为空！");
         return false;
@@ -244,17 +239,6 @@ function check() {
 }
 
 
-function returnTOLLDATE() {
-    var key =true;
-    $("input[name='TOLLDATE']").each(
-        function () {
-            if ($(this).val()==""){
-                key=false;
-            }
-        }
-    );
-    return key;
-}
 function returnOWNERNAME() {
     var key =true;
     $("input[name='OWNERNAME']").each(

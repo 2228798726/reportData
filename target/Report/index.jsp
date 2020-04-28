@@ -10,12 +10,12 @@
 <html lang="en">
 <head>
     <title>日报-事件</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
     <script src="js/index.js"></script>
     <script src="js/index2.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
     <link rel="stylesheet" href="css/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
@@ -26,30 +26,38 @@
         <table class="table table-bordered" id="eventTable">
         <thead class="text-center">
         <tr class="row">
-            <th scope="col" class="col-sm-12 col-md-2" >日期</th>
-            <th scope="col" class="col-sm-12 col-md-2" >事件类型</th>
-            <th scope="col" class="col-sm-12 col-md-2" >管理处</th>
-            <th scope="col" class="col-sm-12 col-md-6" >内容</th>
+            <th scope="col" class="col-sm-2 col-md-2" >事件类型</th>
+            <th scope="col" class="col-sm-2 col-md-2" >管理处</th>
+            <th scope="col" class="col-sm-6 col-md-6" >内容</th>
         </tr>
         </thead>
         <tbody>
         <tr  class="row" id="col">
-            <td scope="col" class="col-sm-12 col-md-2"><input class="form-control" type="date" id="TOLLDATE" name="TOLLDATE" value="" /></td>
-            <td scope="col" class="col-sm-12 col-md-2">
+            <td scope="col" class="col-sm-2 col-md-2">
                 <select class="form-control" id="TYPE" name="TYPE">
                 <option value="1" selected>拥堵1小时</option>
                 <option value="2">拥堵1-2小时</option>
                 <option value="3">拥堵2小时以上</option>
                 </select></td>
-            <td scope="col" class="col-sm-12 col-md-2">
-                <input class="form-control" type="textarea" id="OWNERNAME"  name="OWNERNAME" value="" />
+            <td scope="col" class="col-sm-2 col-md-2">
+                <select class="form-control" id="OWNERNAME" name="OWNERNAME">
+                    <option value="昆西">昆西 </option>
+                    <option value="昆东">昆东 </option>
+                    <option value="大理">大理 </option>
+                    <option value="昭通">昭通 </option>
+                    <option value="普洱">普洱 </option>
+                    <option value="文山">文山 </option>
+                    <option value="红河">红河 </option>
+                    <option value="保山">保山 </option>
+                    <option value="曲靖">曲靖 </option>
+                </select>
             </td>
-            <td scope="col" class="col-sm-12 col-md-5"><input class="form-control" type="textarea" id="CONTENT" name="CONTENT" value="" /></td>
-            <td class="col-md-1">&nbsp;<button onclick="deleteTrRow(this)" class="btn btn-primary mb-2">删除</button></td>
+            <td scope="col" class="col-sm-7 col-md-7"><input class="form-control" type="textarea" id="CONTENT" name="CONTENT" value="" /></td>
+            <td class="col-sm-1 col-md-1">&nbsp;<button onclick="deleteTrRow(this)" class="btn btn-primary mb-2">删除</button></td>
         </tr>
         </tbody>
     </table>
-            <button onclick="addFun()" class="btn btn-primary mb-2">增加一行</button>
+            <p align="center"><button onclick="addFun()" class="btn btn-primary mb-2">增加一行</button></p>
             <p>
                 <input type="date" id="TOLLDATE_Daily" name="TOLLDATE_Car" value="" />时，
                 全省高速公路<b>出口车流量</b><input type="text" id="Total_EX" name="Total_EX" value="" readonly>辆（客车<input type="text" id="CAR_EX" name="CAR_EX" value="" onblur="setCAR_EX()">辆、货车<input type="text" id="TRUCK_EX" name="TRUCK_EX" value="" onblur="setTRUCK_EX()">辆），
@@ -65,7 +73,7 @@
             </p>
             <br>
             <p align="center"><font color="red"><span id="message">${msg}</span></font></p>
-            <button type="submit" class="btn btn-primary mb-2" onclick="submitAjax()">提交</button>
+            <p align="center"><button type="submit" class="btn btn-primary mb-2" onclick="submitAjax()">提交</button></p>
         </div>
     </div>
 </form>

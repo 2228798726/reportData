@@ -1,24 +1,56 @@
 .form-control{
     border:0;
-    webkit-box-shadow:none;
     box-shadow:none;
 }
 a{
     link: none;
 }
-input{
+input[type="textarea"]{
     border:0;
     webkit-box-shadow:none;
+    background-color: transparent;
+    outline: none;
     box-shadow:none;
     padding: 0;
     margin: 0;
 }
-input[type="text"]{
-    width: 60px;
+input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px #ffffff inset;
+    -webkit-text-fill-color: black;
+}
+#Total{
+    width: 80px;
     text-align: center;
-    webkit-box-shadow:none;
-    padding: 0;
-    margin: 0;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+}
+#Total_EN{
+    width: 80px;
+    text-align: center;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+}
+#Total_EX{
+    width: 80px;
+    text-align: center;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+}
+
+input[type="text"]{
+    width: 80px;
+    text-align: center;
+    background-color: transparent;
+    outline: none;
+    border-color:#000000;
+    border-style:solid;
+    border-top-width:0px;
+    border-right-width:0px;
+    border-bottom-width:1px;
+    border-left-width:0px;
 }
 .table tbody tr td{
     vertical-align: middle;

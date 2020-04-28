@@ -13,6 +13,10 @@ import com.util.ResourcesUtil;
 import oracle.jdbc.oracore.TDSPatch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.*;
 import wk.pojo.TdObiect;
 import wk.pojo.TdWxDailyReport;
@@ -21,6 +25,7 @@ import wk.serviceImpl.TdWxDailyReportServiceImpl;
 import wk.serviceImpl.TdWxDavenportRoadInfoServiceImpl;
 
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +43,9 @@ public class ReportController {
     TdWxDavenportRoadInfoServiceImpl tdWxDavenportRoadInfoService;
     @Autowired
     TdWxDailyReportServiceImpl tdWxDailyReportService;
+    @Resource
+    private PlatformTransactionManager transactionManager;
+
 
     /**
      * 日报事件请求路径
@@ -175,36 +183,58 @@ public class ReportController {
     @ResponseBody
     @RequestMapping(value = "/event_multi",method = RequestMethod.POST)
     public ResultEntity<Object> insertMultiEvents(@RequestBody String tdWxDavenportRoadInfoList){
+        DefaultTransactionDefinition defaultTransactionDefinition = new DefaultTransactionDefinition();
+        defaultTransactionDefinition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+        TransactionStatus status = transactionManager.getTransaction(defaultTransactionDefinition);
 
         Gson gson=new Gson();
         TdObiect tdObiect =gson.fromJson(tdWxDavenportRoadInfoList,TdObiect.class);
-        for (TdWxDavenportRoadInfo tdWxDavenportRoadInfo:tdObiect.getTdWxDavenportRoadInfos()){
-            //设置ID
-            tdWxDavenportRoadInfo.setID(GUIDUtil.getGUID());
-            tdWxDavenportRoadInfo.setTOLLDATE(tdWxDavenportRoadInfo.getTOLLDATE());
-        }
-        System.out.println(tdObiect.getTdReception());
-
-        TdWxDailyReport tdWxDailyReport= Assignment.assigmentTdWxDailyReport(tdObiect.getTdReception());
-        try {
-            //如果插入数据成功，则返回状态码0，成功
-            if (tdWxDavenportRoadInfoService.insertMulti(tdObiect.getTdWxDavenportRoadInfos()) != 0) {
-                if (tdWxDailyReportService.insert(tdWxDailyReport)!=0) {
+        if(tdObiect.getTdWxDavenportRoadInfos().size()!=0){
+            System.out.println("事件不为空！");
+            for (TdWxDavenportRoadInfo tdWxDavenportRoadInfo:tdObiect.getTdWxDavenportRoadInfos()){
+                //设置ID
+                tdWxDavenportRoadInfo.setID(GUIDUtil.getGUID());
+                tdWxDavenportRoadInfo.setTOLLDATE(tdWxDavenportRoadInfo.getTOLLDATE());
+            }
+            TdWxDailyReport tdWxDailyReport= Assignment.assigmentTdWxDailyReport(tdObiect.getTdReception());
+            try {
+                //如果插入数据成功，则返回状态码0，成功
+                if (tdWxDavenportRoadInfoService.insertMulti(tdObiect.getTdWxDavenportRoadInfos()) != 0&&
+                        tdWxDailyReportService.insert(tdWxDailyReport)!=0) {
+                    transactionManager.commit(status);
                     return ResultEntity.createSuccessResult(null);
-                }
-                else {
+                } else {
                     //失败返回上传失败，状态码为1001
+                    transactionManager.rollback(status);
                     return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
                 }
-            } else {
+            }catch (Exception e){
+                transactionManager.rollback(status);
+                e.printStackTrace();
                 //失败返回上传失败，状态码为1001
                 return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            //失败返回上传失败，状态码为1001
-            return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
+        }else {
+            System.out.println("事件为空！");
+            try {
+                TdWxDailyReport tdWxDailyReport= Assignment.assigmentTdWxDailyReport(tdObiect.getTdReception());
+                //如果插入数据成功，则返回状态码0，成功
+                if (tdWxDailyReportService.insert(tdWxDailyReport)!=0) {
+                    transactionManager.commit(status);
+                    return ResultEntity.createSuccessResult(null);
+                } else {
+                    //失败返回上传失败，状态码为1001
+                    transactionManager.rollback(status);
+                    return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                transactionManager.rollback(status);
+                //失败返回上传失败，状态码为1001
+                return ResultEntity.createFailResult(MessageConstatnt.UPLOAD_FAIL);
+            }
         }
+
     }
 
     /**
